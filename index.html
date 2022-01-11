@@ -1,0 +1,83 @@
+<!doctype html>
+
+<html lang="en"> 
+
+<head>
+  <script type="text/javascript" src="internalorgans.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>clickerton! :D</title>
+  <meta name="description" content="lotsa clicking happening here">
+  <meta name="author" content="hoofy">
+
+  <meta property="og:title" content="A Basic HTML5 Template">
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:url" content="PUTAURLHEREWHENYOUGETONE"> -->
+  <meta property="og:description" content="a game about making a number go up">
+  <!-- <meta property="og:image" content="PUTANIMAGEHEREWHENYOUGETONE"> -->
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="bread">
+
+    <div id="lettuceakathenavbar">
+      version 0.1 || added a nice lil intro that asks for your name and doesnt let u play otherwise!!! awesoe!!! ;3cccc
+    </div>
+    <div>
+      <h4>whats da fps XD?: <span id="fpstrack">0</span></h4>
+    </div>
+
+    <div id="modal_container" class="modal_container show">
+      <div class="modal">
+        <img id="background" draggable="false" src="img/welcome.png">
+        <div id="modal_content">
+          <img id="fella" draggable="false" src="img/chargirlboss.png">
+          <div id="welcomebox" class="textbox"><span id="dialogue">kat: "hey! i'm kat. all settled in?"</span></div>
+          <input id="chosenuser" class="" type="text" placeholder="your name here :D" maxlength="25">
+          <button onclick="window.next()"><span id="dialogueR">"yea"</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="themeatalsoknownasthegame">
+
+      <div id="upgrades">
+        <h1>upgrades</h1>
+        <button onclick="window.mgrade()" class="notdraggable" draggable="false">buy 1 mouse for <span id="mpriceD">15</span> clix</button>
+
+        <h4 style="margin-top: -2px;">mice give you 1 clix per second! you currently have <span id="miceD">0</span> mice
+        </h4>
+      </div>
+
+      <div id="gameloop">
+        <h1>gameloop</h1>
+      </div>
+
+      <div id="clicker">
+
+        <div style="display: flex;flex-direction: column;align-items: center;">
+          <h1 style="text-align: center; padding: 1px;"><span id="user">whoever</span>'s <span>room</span></h1>
+          <p1>cps: <span id="cpsShower">0</span></p1>
+        </div>
+
+        <img src="img/firsteversprite.png" onclick="window.click()" class="notdraggable" draggable="false">
+        <h1 style="text-align: center;">you have <span id="clixcount">0</span> clix!!! :3c</h1>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
