@@ -1,0 +1,149 @@
+html, body {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: #C4C4C4;
+  text-rendering: optimizeSpeed;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+notdraggable {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+ 
+#bread {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#lettuceakathenavbar {
+  background-color: #acacac;
+}
+
+#themeatalsoknownasthegame {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+#themeatalsoknownasthegame img {
+  max-width: 123px;
+}
+
+#upgrades {
+  height: 100%;
+  width: 25%;
+  background-color: #969696;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#gameloop {
+  height: 100%;
+  width: 50%;
+  background-color: #acacac;
+}
+
+#clicker {
+  display: flex;
+  height: 100%;
+  width: 25%;
+  background-color: #969696;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.modal_container {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal_container.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+.modal #background {
+  width: 100%;
+  height: auto;
+}
+#modal_content {
+  position: absolute;
+  display: flex;
+  height: 100%; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+.modal button {
+  padding-bottom: 100px;
+  margin-top: 40px;
+  box-shadow: 2px 2px 0px 0px #686868;
+	background-color:#acacac;
+  color: black;
+  text-decoration:none;
+	font-size:17px;
+	padding:6px 31px;
+  border: 0px;
+  transform: translatey(80px);
+}
+.modal button:hover {
+  box-shadow: 0px 0px 0px 0px #686868;
+}
+.modal button:active {
+  background-color: #a3bba2;
+}
+.modal input {
+  box-shadow: 2px 2px 0px 0px #686868;
+	background-color:#acacac;
+  color: black;
+  text-decoration:none;
+	font-size:17px;
+	padding:6px 31px;
+  border: 0px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translatey(35px)
+}
+.modal input.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.textbox {
+  background-color: #bcafc5;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(0, 0, 0);
+  transform: translatey(-50px);
+  font-size: 18px;
+  text-align: center;
+  padding: 4px;
+}

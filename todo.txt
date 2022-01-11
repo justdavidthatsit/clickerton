@@ -1,0 +1,71 @@
+1. make a thing that gets the last time/date that you closed the //
+window, then calculates how much cps you would have made at a 
+fraction of that cps as a penalty for having the game closed
+
+2. an upgrade that makes your individual clicks weaker, but if
+you click and hold and perfectly time a letgo, it charges and
+releases a burst of clicks that count for more. the more amount
+of points put into this skill, the more value the burst gives on
+success (this can be done with an if-check or switch case idk)
+
+3. a save system, lmao 
+
+✅. a system letting you multiply the amount of cps gained by 
+mice by like .2 or someshit
+
+✅. this is a reminder that on the multiplier, the first upgrade 
+should ALWAYS be +1 or something to double production, onwards u 
+should do some more math on that (maybe start multiplying? idk)
+MULTIPLY THE MULTIPLIER!!!!
+(example, if m is at 1.4 lets say, if u multiply it with an
+upgrade that gives u 20% more production, you'd do 1.4 X 1.2 to
+get 1.68, which is 20% more of 1.4)
+
+5. make a pixel font thats easily readable and apply it
+everywhere
+
+✅. add some checks on the name so its,
+    - not too long
+    - not too short
+    - has no funny characters
+  OHH AND DURING CONFIRMATION, THE PERSON UR TALKING TO CAN HAVE
+  LIKE DIFFERENT REACTIONS TO EACH IFFY THING SAID LIKE
+
+  >enter nothing
+      - ".. hello?"
+  >enter the funny characters
+      - "never heard of someone with '?,/,<,>,=,[,],`,~,+' in their
+       name before haha"
+  >continue clicking like 50 times and maybe get a hidden achievement for being such a
+      - "sir just any normal name will do"
+
+7. a minigame where you press z and x in whatever order it asks for, fanfiction writing
+
+
+
+potential bugs:
+change name after intro to nothing
+
+
+
+//////////////////////////////////////////////////////////////////
+
+THE UPDATE LOGS :D
+
+0.1
+  added a nice lil intro that asks for your name and doesnt let u
+  play otherwise!!! awesoe!!! ;3cccc
+0.013
+  added a modal meant to be the place where you first enter ur
+  name n stuff, later i'll use cookies or smth to make sure it
+  doesnt pop up again (if i use it again it'll probs be for
+  offline rewards lmao)
+
+0.01
+  huuuuge jump in progress i got everything to run cowwectly! :D 
+  fps is smoothened out, clix stuff all organized, its lookin good
+
+0.002
+  just starting out :(
+
+//////////////////////////////////////////////////////////////////
