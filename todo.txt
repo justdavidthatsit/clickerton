@@ -1,3 +1,5 @@
+i wonder if github works now idk new to this XDD
+
 1. make a thing that gets the last time/date that you closed the //
 window, then calculates how much cps you would have made at a 
 fraction of that cps as a penalty for having the game closed
