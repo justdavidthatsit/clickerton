@@ -1,5 +1,3 @@
-const modal_container = document.getElementById('modal_container');
-
 // hi! :3c
 
 // base values ---------------------------------------------------- //
@@ -24,9 +22,11 @@ const Game = {
 console.log(localStorage);
 console.log(Game);
 
+// our loading of a presave --------------------------------------- //
 if (localStorage.length>=1){
   var fixedupclix = localStorage.getItem('clix');
   Game.Info.clix += parseInt(fixedupclix, 10);
+  Game.User.name = localStorage.getItem('name');
 };
 // dialogue ------------------------------------------------------- //
 var welcomedialogue = [
@@ -45,16 +45,28 @@ var welcomedialogue = [
 ];
 var current_line = 0;
 var unaccepted_clicks = 0; //add later when unaccepted clicks get to like, 50, it gives a hidden achievement named like "te·na·cious: not readily relinquishing a position, principle, or course of action; determined."
+function changedialogue(thingtosay){
+  document.getElementById("dialogue").innerHTML = thingtosay;
+};
+
+if (Game.User.name) {
+  changedialogue(`kat: "welcome back ${Game.User.name}! i'd say how much you earned here but i havent been programmed to say that yet :DD"`);
+  document.getElementById("dialogueR").innerHTML = "lol hey";
+  current_line = 'welcome';
+};
+
 function remove(){
   document.getElementById('modal_container').classList.remove('show');
 };
 function next(){
+  if (current_line='welcome') {
+    remove();
+  };
+
   current_line+=1;
   var current_step = welcomedialogue[current_line];
   var chosenuser = document.getElementById("chosenuser").value;
-  function changedialogue(thingtosay){
-    document.getElementById("dialogue").innerHTML = thingtosay;
-  };
+  
   if(current_step==undefined){
     document.getElementById("user").innerHTML=Game.User.name;
     remove();
@@ -84,6 +96,7 @@ function next(){
       };
       if (chosenuser.length >= 1) {
         Game.User.name=chosenuser;
+        localStorage.setItem("name", chosenuser);
         changedialogue(`kat: "well hey ${Game.User.name}, heard you're doin some kinda self employment thing? that's pretty neat"`);
       };
     default:
