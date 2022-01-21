@@ -13,6 +13,7 @@ const Game = {
     "trueCps": 0 //THIS SHOULD ALWAYS START AS 0
   },
   "mice": {
+    "baseprice": 15,
     "price": 15,
     "count": 0,
     "basepower": 1,
@@ -134,13 +135,24 @@ function click(){
   updateClixthings();
 };
 
-
-function mgrade(){
-  if (Game.Info.clix >= Game.mice.price) {
-    Game.Info.clix-=Game.mice.price;
-    Game.mice.count+=1;
-  }
-  updateClixthings();
+function buy(thing){
+  //SELECTING WHAT YOU'RE BUYING
+  var currentfella
+  switch (thing) {
+    case 'mice':
+      console.log('read: u wanna buy a mouse');
+      currentfella = Game.mice;
+      break
+    default:
+      console.log(`I DON'T KNOW WHAT YOU'RE TRYING TO BUY LMAO`);
+  };
+  //BUYING SELECTED THING
+  if (Game.Info.clix>=currentfella.price) {
+    Game.Info.clix-=currentfella.price;
+    currentfella.count+=1;
+    currentfella.price=Math.round(currentfella.baseprice*(1.15**currentfella.count));
+    console.log(Game.mice.price);
+  };
 };
 
 
