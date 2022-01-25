@@ -1,8 +1,9 @@
-html, body {
+html,
+body {
   display: flex;
   height: 100%;
   width: 100%;
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
   text-rendering: optimizeSpeed;
   flex-direction: column;
   margin: 0;
@@ -16,7 +17,7 @@ notdraggable {
   -o-user-select: none;
   user-select: none;
 }
- 
+
 #bread {
   display: flex;
   flex-direction: column;
@@ -97,7 +98,7 @@ notdraggable {
 #modal_content {
   position: absolute;
   display: flex;
-  height: 100%; 
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -107,11 +108,11 @@ notdraggable {
   padding-bottom: 100px;
   margin-top: 40px;
   box-shadow: 2px 2px 0px 0px #686868;
-	background-color:#acacac;
+  background-color: #acacac;
   color: black;
-  text-decoration:none;
-	font-size:17px;
-	padding:6px 31px;
+  text-decoration: none;
+  font-size: 17px;
+  padding: 6px 31px;
   border: 0px;
   transform: translatey(80px);
 }
@@ -123,15 +124,15 @@ notdraggable {
 }
 .modal input {
   box-shadow: 2px 2px 0px 0px #686868;
-	background-color:#acacac;
+  background-color: #acacac;
   color: black;
-  text-decoration:none;
-	font-size:17px;
-	padding:6px 31px;
+  text-decoration: none;
+  font-size: 17px;
+  padding: 6px 31px;
   border: 0px;
   opacity: 0;
   pointer-events: none;
-  transform: translatey(35px)
+  transform: translatey(35px);
 }
 .modal input.show {
   opacity: 1;
@@ -146,4 +147,45 @@ notdraggable {
   font-size: 18px;
   text-align: center;
   padding: 4px;
+}
+.upgradebox {
+  display: flex;
+  width: 80%;
+  border-style: dashed;
+  border-color: palevioletred;
+  border-width: 3px;
+  align-items: center;
+  user-select: none;
+}
+.upgradebox:hover {
+  border-color: greenyellow;
+  border-style: solid;
+}
+.upgradebox:active {
+  border-style: double;
+  border-color: rgb(95, 255, 47);
+}
+.upgradebox img {
+  height: 100%;
+  max-height: min-content;
+  justify-self: start;
+}
+.upgradebox h2 {
+  margin: 0;
+  font-size: 49px;
+  padding-right: 5%;
+}
+.upgradebox div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.upgradebox h1 {
+  margin: 0;
+}
+.upgradebox h4 {
+  margin: 0;
 }

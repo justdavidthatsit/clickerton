@@ -51,15 +51,24 @@
     <div id="themeatalsoknownasthegame">
 
       <div id="upgrades">
-        <h1>upgrades</h1>
-        <button onclick="window.buy('mice')" class="notdraggable" draggable="false">buy 1 mouse for <span id="mpriceD">15</span> clix</button>
 
-        <h4 style="margin-top: -2px;">mice give you 1 clix per second! you currently have <span id="miceD">0</span> mice
-        </h4>
+        <h1>upgrades</h1>
+
+        <div class="upgradebox" onclick="window.buy('mice')">
+          <img src="img/mouse.png" class="notdraggable" draggable="false">
+          <div>
+            <h1>mouse</h1>
+            <h4><span id="mpriceD">15</span> clix</h4>
+          </div>
+          <h2><span id="miceD">0</span></h2>
+        </div>
+
       </div>
 
       <div id="gameloop">
         <h1>gameloop</h1>
+        <img src="img/clkrtnDELIVERYmeh.gif" class="notdraggable" draggable="false">
+        <h4>*vrrrr vrmmmm skrrr nrrrrrrrmmm verrmrmmmmmm SKRRRRRRR vrrrr*</h4>
       </div>
 
       <div id="clicker">
