@@ -23,6 +23,9 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -55,12 +58,20 @@
         <h1>upgrades</h1>
 
         <div class="upgradebox" onclick="window.buy('mice')">
+          <h2><span id="miceD">0</span></h2>
           <img src="img/mouse.png" class="notdraggable" draggable="false">
           <div>
             <h1>mouse</h1>
             <h4><span id="mpriceD">15</span> clix</h4>
           </div>
-          <h2><span id="miceD">0</span></h2>
+        </div>
+        <div class="upgradebox" onclick="window.buy('minimonitor')">
+          <h2><span id="minimonD">0</span></h2>
+          <img src="img/minimonitor.png" class="notdraggable" draggable="false">
+          <div>
+            <h1>mini monitor</h1>
+            <h4><span id="minimonpD">150</span> clix</h4>
+          </div>
         </div>
 
       </div>

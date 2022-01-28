@@ -158,7 +158,7 @@ notdraggable {
   user-select: none;
 }
 .upgradebox:hover {
-  border-color: greenyellow;
+  border-color: palevioletred;
   border-style: solid;
 }
 .upgradebox:active {
@@ -172,20 +172,25 @@ notdraggable {
 }
 .upgradebox h2 {
   margin: 0;
-  font-size: 49px;
-  padding-right: 5%;
+  font-size: 50px;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  font-family: "VT323", monospace;
 }
 .upgradebox div {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-left: auto;
+  margin-left: 5%;
   margin-right: auto;
 }
 .upgradebox h1 {
+  line-height: 30px;
   margin: 0;
+  font-size: 30px;
 }
 .upgradebox h4 {
   margin: 0;
+  font-size: 17px;
 }

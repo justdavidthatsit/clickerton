@@ -9,15 +9,24 @@ const Game = {
   "Info": {
     "clix": 0,
     "cps": 0,
-    "clickpower": 1,
+    "clickpower": 500,
     "trueCps": 0 //THIS SHOULD ALWAYS START AS 0
   },
-  "mice": {
-    "baseprice": 15,
-    "price": 15,
-    "count": 0,
-    "basepower": 1,
-    "multiplier": 1
+  "Buyables": {
+    "mice": {
+      "baseprice": 15,
+      "price": 15,
+      "count": 0,
+      "basepower": 1,
+      "multiplier": 1
+    },
+    "minimonitor": {
+      "baseprice": 150,
+      "price": 150,
+      "count": 0,
+      "basepower": 10,
+      "multiplier": 1
+    }
   }
 };
 console.log(localStorage);
@@ -106,6 +115,21 @@ function next(){
 };
 
 // meta ---------------------------------------------------------- //
+function abbreviateNumber(value) {
+  let newValue = value;
+  const suffixes = ["", "k", "m", "b", "t", "q", "Q", "s", "S", "o", "n", "d", "U"];
+  let suffixNum = 0;
+  while (newValue >= 1000) {
+    newValue /= 1000;
+    suffixNum++;
+  };
+
+  newValue = newValue.toPrecision(3);
+
+  newValue += suffixes[suffixNum];
+  return newValue;
+};
+
 console.log(localStorage);
 
 // THE SAVE BOX!!!!!!!!!!!!!!!!!!!!!!
@@ -117,15 +141,21 @@ setInterval(function(){
 // THE SAVE BOX!!!!!!!!!!!!!!!!!!!!!!
 
 function updateClixthings() {
-  document.getElementById("clixcount").innerHTML=Math.floor(Game.Info.clix);
+  document.getElementById("clixcount").innerHTML=abbreviateNumber(Math.floor(Game.Info.clix));
   document.getElementById("fpstrack").innerHTML=fps;
-  document.getElementById("miceD").innerHTML=Game.mice.count;
-  document.getElementById("mpriceD").innerHTML=Game.mice.price;
+  document.getElementById("miceD").innerHTML=Game.Buyables.mice.count;
+  document.getElementById("mpriceD").innerHTML=Game.Buyables.mice.price;
+  document.getElementById("minimonD").innerHTML=Game.Buyables.minimonitor.count;
+  document.getElementById("minimonpD").innerHTML=Game.Buyables.minimonitor.price;
   document.getElementById("cpsShower").innerHTML=Game.Info.trueCps;
 
   // console.log(`you're on case ${current_line} and have ${unaccepted_clicks} invalid 'next's`);
+  var cpsget
+  cpsget = 
+  ((Game.Buyables.mice.basepower*Game.Buyables.mice.count)*Game.Buyables.mice.multiplier)+
+  ((Game.Buyables.minimonitor.basepower*Game.Buyables.minimonitor.count)*Game.Buyables.minimonitor.multiplier)
 
-  Game.Info.trueCps = getTrueCps(Game.Info.cps, (Game.mice.basepower*Game.mice.count)*Game.mice.multiplier)
+  Game.Info.trueCps = getTrueCps(Game.Info.cps, cpsget)
 };
 
 // clix production 😈 -------------------------------------------- //
@@ -141,7 +171,11 @@ function buy(thing){
   switch (thing) {
     case 'mice':
       console.log('read: u wanna buy a mouse');
-      currentfella = Game.mice;
+      currentfella = Game.Buyables.mice;
+      break
+    case 'minimonitor':
+      console.log('read: u wanna buy a mini monitor');
+      currentfella = Game.Buyables.minimonitor;
       break
     default:
       console.log(`I DON'T KNOW WHAT YOU'RE TRYING TO BUY LMAO`);
@@ -151,7 +185,7 @@ function buy(thing){
     Game.Info.clix-=currentfella.price;
     currentfella.count+=1;
     currentfella.price=Math.round(currentfella.baseprice*(1.15**currentfella.count));
-    console.log(Game.mice.price);
+    console.log(currentfella.price);
   };
 };
 
