@@ -116,18 +116,22 @@ function next(){
 
 // meta ---------------------------------------------------------- //
 function abbreviateNumber(value) {
-  let newValue = value;
-  const suffixes = ["", "k", "m", "b", "t", "q", "Q", "s", "S", "o", "n", "d", "U"];
-  let suffixNum = 0;
-  while (newValue >= 1000) {
-    newValue /= 1000;
-    suffixNum++;
+  if (value>9999) {
+    let newValue = value;
+    const suffixes = ["", "k", "m", "b", "t", "q", "Q", "s", "S", "o", "n", "d", "U"];
+    let suffixNum = 0;
+    while (newValue >= 1000) {
+      newValue /= 1000;
+      suffixNum++;
+    };
+  
+    newValue = newValue.toPrecision(3);
+  
+    newValue += suffixes[suffixNum];
+    return newValue;
+  } else {
+    return value;
   };
-
-  newValue = newValue.toPrecision(3);
-
-  newValue += suffixes[suffixNum];
-  return newValue;
 };
 
 console.log(localStorage);
@@ -139,6 +143,9 @@ setInterval(function(){
   console.log(localStorage);
 }, 10000)
 // THE SAVE BOX!!!!!!!!!!!!!!!!!!!!!!
+function changecolorbyid(thing, color){
+  document.getElementById(thing).style.color = color;
+};
 
 function updateClixthings() {
   document.getElementById("clixcount").innerHTML=abbreviateNumber(Math.floor(Game.Info.clix));
@@ -156,6 +163,19 @@ function updateClixthings() {
   ((Game.Buyables.minimonitor.basepower*Game.Buyables.minimonitor.count)*Game.Buyables.minimonitor.multiplier)
 
   Game.Info.trueCps = getTrueCps(Game.Info.cps, cpsget)
+
+
+  //stylistic things
+  if (Game.Info.clix>=Game.Buyables.mice.price){
+    changecolorbyid("affordmouse", '#000000');
+  } else if (Game.Info.clix<Game.Buyables.mice.price){
+    changecolorbyid("affordmouse", '#545454');
+  };
+  if (Game.Info.clix>=Game.Buyables.minimonitor.price){
+    changecolorbyid("affordmon", '#000000');
+  } else if (Game.Info.clix<Game.Buyables.minimonitor.price){
+    changecolorbyid("affordmon", '#545454');
+  };
 };
 
 // clix production 😈 -------------------------------------------- //
@@ -188,7 +208,6 @@ function buy(thing){
     console.log(currentfella.price);
   };
 };
-
 
 document.addEventListener("visibilitychange", function() {
   if (document.visibilityState === 'visible') {
