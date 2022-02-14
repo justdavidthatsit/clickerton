@@ -1,3 +1,7 @@
+:root {
+  --menubuttons: #b0b5b6;
+}
+
 html,
 body {
   display: flex;
@@ -8,6 +12,7 @@ body {
   flex-direction: column;
   margin: 0;
   padding: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
 notdraggable {
@@ -24,8 +29,13 @@ notdraggable {
   height: 100%;
 }
 
-#lettuceakathenavbar {
-  background-color: #acacac;
+#lettuce {
+  display: flex;
+  height: 20px;
+  background-color: #646464;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
 }
 
 #themeatalsoknownasthegame {
@@ -52,6 +62,7 @@ notdraggable {
   height: 100%;
   width: 50%;
   background-color: #acacac;
+  padding: 15px 15px 0px 15px;
 }
 
 #clicker {
@@ -141,8 +152,9 @@ notdraggable {
 .textbox {
   background-color: #bcafc5;
   border-style: solid;
+  border-radius: 2px;
   border-width: 1px;
-  border-color: rgb(0, 0, 0);
+  border-color: #333333;
   transform: translatey(-50px);
   font-size: 18px;
   text-align: center;
@@ -151,19 +163,21 @@ notdraggable {
 .upgradebox {
   display: flex;
   width: 80%;
-  border-style: dashed;
-  border-color: palevioletred;
-  border-width: 3px;
+  background-color: #a1a1a1;
+  transition: all 0.2s;
+  border-style: solid;
+  border-radius: 2px;
+  border-width: 1px;
+  border-color: #333333;
   align-items: center;
   user-select: none;
 }
 .upgradebox:hover {
-  border-color: palevioletred;
-  border-style: solid;
+  transform: translateX(5px);
+  background-color: #c1c6c7;
 }
 .upgradebox:active {
-  border-style: double;
-  border-color: rgb(95, 255, 47);
+  transform: translateX(1px);
 }
 .upgradebox img {
   height: 100%;
@@ -181,7 +195,7 @@ notdraggable {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   margin-left: 5%;
   margin-right: auto;
 }
@@ -193,4 +207,45 @@ notdraggable {
 .upgradebox h4 {
   margin: 0;
   font-size: 17px;
+}
+/* THE MENU ICONS */
+#navigationbar {
+  display: flex;
+  border-radius: 2px;
+  width: 100%;
+  background-color: #9b9b9b;
+}
+.menuoption {
+  margin: 10px;
+  background-color: var(--menubuttons);
+  border-radius: 2px;
+  transition: all 0.1s;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #333333;
+}
+.menuoption:hover {
+  transform: translateY(-2px);
+  background-color: #c1c6c7;
+}
+.menuoption:active {
+  transform: translateY(-1px);
+  background-color: #a9d3b3;
+}
+#gameloop h1 {
+  line-height: 0px;
+}
+
+/* menus */
+.urhere {
+  display: flex;
+}
+.urnothere {
+  display: none;
+}
+.LOCroom {
+  flex-direction: column;
+}
+.LOCjak {
+  flex-direction: column;
 }

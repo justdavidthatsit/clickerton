@@ -134,6 +134,18 @@ function abbreviateNumber(value) {
   };
 };
 
+function goto(here, notthere){
+  //in the situation you need to add multiple "notthere"s, maybe find a way to add all the places ur not at in the variables area
+  var whereugoin
+  var whereufrom
+  whereugoin=here;
+  whereufrom=notthere;
+  document.getElementById(whereugoin).classList.add('urhere');
+  document.getElementById(whereugoin).classList.remove('urnothere');
+  document.getElementById(whereufrom).classList.remove('urhere');
+  document.getElementById(whereufrom).classList.add('urnothere');
+};
+
 console.log(localStorage);
 
 // THE SAVE BOX!!!!!!!!!!!!!!!!!!!!!!
