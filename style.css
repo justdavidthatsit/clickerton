@@ -75,6 +75,10 @@ notdraggable {
   justify-content: space-evenly;
 }
 
+#imagetoclickon {
+  opacity: 100;
+}
+
 .modal_container {
   background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
@@ -232,8 +236,31 @@ notdraggable {
   transform: translateY(-1px);
   background-color: #a9d3b3;
 }
+
 #gameloop h1 {
   line-height: 0px;
+  font-size: 50px;
+  position: relative;
+}
+#gameloop p3 {
+  font-size: 12.5px;
+  color: #464646;
+  margin-top: -2px;
+  padding-bottom: 5px;
+}
+#LUhome {
+  height: 2px;
+  width: 100%;
+  background-color: #333333;
+  border-radius: 2px;
+  transition: width 1s cubic-bezier(1, 0.03, 0.66, 1);
+}
+#LUjak {
+  height: 2px;
+  width: 2px;
+  background-color: #333333;
+  border-radius: 2px;
+  transition: width 1s cubic-bezier(1, 0.03, 0.66, 1);
 }
 
 /* menus */

@@ -4,27 +4,30 @@
 var fps = 30;
 const Game = {
   "User": {
+    "doneintro": 0,
     "name": ""
   },
   "Info": {
     "clix": 0,
     "cps": 0,
-    "clickpower": 500,
-    "trueCps": 0 //THIS SHOULD ALWAYS START AS 0
+    "clickpower": 1,
+    "trueCps": 0, //THIS SHOULD ALWAYS START AS 0
+    "handmadeclix": 0,
+    "lifetimeclix": 0
   },
   "Buyables": {
     "mice": {
       "baseprice": 15,
       "price": 15,
       "count": 0,
-      "basepower": 1,
+      "basepower": .1,
       "multiplier": 1
     },
     "minimonitor": {
       "baseprice": 150,
-      "price": 150,
+      "price": 100,
       "count": 0,
-      "basepower": 10,
+      "basepower": 1,
       "multiplier": 1
     }
   }
@@ -33,10 +36,30 @@ console.log(localStorage);
 console.log(Game);
 
 // our loading of a presave --------------------------------------- //
-if (localStorage.length>=1){
+if (localStorage.getItem('lifetimeclix')>=1){
+  Game.User.doneintro = localStorage.getItem('done with intro');
+
   var fixedupclix = localStorage.getItem('clix');
+  var fxdhandmade = localStorage.getItem('handmadeclix');
+  var fixeduplifetimeclix = localStorage.getItem('lifetimeclix');
+  var fxdmicecount = localStorage.getItem('micecount');
+  var fxdmiceprice = localStorage.getItem('miceprice');
+  var fxmoncount = localStorage.getItem("monitorcount");
+  var fxmonprice = localStorage.getItem("monitorprice");
+
   Game.Info.clix += parseInt(fixedupclix, 10);
+  Game.Info.handmadeclix += parseInt(fxdhandmade, 10);
+  Game.Info.lifetimeclix += parseInt(fixeduplifetimeclix, 10);
   Game.User.name = localStorage.getItem('name');
+  Game.Buyables.mice.count += parseInt(fxdmicecount, 10);
+  Game.Buyables.mice.price = parseInt(fxdmiceprice, 10);
+  Game.Buyables.minimonitor.count += parseInt(fxmoncount, 10);
+  Game.Buyables.minimonitor.price = parseInt(fxmonprice, 10);
+};
+// shortcuts ------------------------------------------------------ //
+// CBID = Change By ID
+const cbid = function(wheretheidsgonnabe){
+  return document.getElementById(wheretheidsgonnabe);
 };
 // dialogue ------------------------------------------------------- //
 var welcomedialogue = [
@@ -46,49 +69,51 @@ var welcomedialogue = [
   { d: "kat: \"that's good, purrhaps you'll be a better roommate than my last one! what's your name?\"",
     r: "[enter name]"
   },
-  { d: `kat: "well hey ${Game.User.name}, heard you're doin some kinda self employment thing? that's pretty neat"`,
-    r: `"mhm! all from my room haha"`
+  { d: `kat: "well hey, heard you're doin some kinda new 'clix' thing? heard a bit about that online."`,
+    r: `"same here, wanted to try it out"`
   },
-  { d: "kat: \"that's pawsomee, anyway i'll cya for now but good luck with all that!\"",
+  { d: "kat: \"that's neat, anyway i'll cya for now but good luck with all that!\"",
     r: `"cya"`
   }
 ];
+
 var current_line = 0;
 var unaccepted_clicks = 0; //add later when unaccepted clicks get to like, 50, it gives a hidden achievement named like "te·na·cious: not readily relinquishing a position, principle, or course of action; determined."
 function changedialogue(thingtosay){
-  document.getElementById("dialogue").innerHTML = thingtosay;
+  cbid("dialogue").innerHTML = thingtosay;
 };
 
-if (Game.User.name) {
+if (Game.User.doneintro == 1) {
   changedialogue(`kat: "welcome back ${Game.User.name}! i'd say how much you earned here but i havent been programmed to say that yet :DD"`);
-  document.getElementById("dialogueR").innerHTML = "lol hey";
+  cbid("dialogueR").innerHTML = "lol hey";
+  cbid("user").innerHTML = Game.User.name;
   current_line = 'welcome';
 };
 
 function remove(){
-  document.getElementById('modal_container').classList.remove('show');
+  Game.User.doneintro = 1;
+  cbid('modal_container').classList.remove('show');
 };
 function next(){
-  if (current_line='welcome') {
+  if (Game.User.doneintro == 1) {
     remove();
   };
 
   current_line+=1;
   var current_step = welcomedialogue[current_line];
-  var chosenuser = document.getElementById("chosenuser").value;
+  var chosenuser = cbid("chosenuser").value;
   
   if(current_step==undefined){
-    document.getElementById("user").innerHTML=Game.User.name;
+    cbid("user").innerHTML=Game.User.name;
     remove();
   };
-  console.log(current_step);
   changedialogue(current_step.d);
-  document.getElementById("dialogueR").innerHTML = current_step.r;
+  cbid("dialogueR").innerHTML = current_step.r;
   // input name handling (put 'current_line-=1;' if you wanna invalidate an input ;)
   if (current_line == 1) {
-    document.getElementById('chosenuser').classList.add('show');
+    cbid('chosenuser').classList.add('show');
   } else if (current_line > 1) {
-    document.getElementById('chosenuser').classList.remove('show');
+    cbid('chosenuser').classList.remove('show');
   };
 
   switch (current_line) {
@@ -96,8 +121,8 @@ function next(){
       if (chosenuser.length < 1) {
         current_line-=1;
         changedialogue(`kat: "...you got a name, right?"`);
-        document.getElementById("dialogueR").innerHTML = "[enter name]";
-        document.getElementById('chosenuser').classList.add('show');
+        cbid("dialogueR").innerHTML = "[enter name]";
+        cbid('chosenuser').classList.add('show');
         unaccepted_clicks+=1;
       };
       if (chosenuser.length < 1 && unaccepted_clicks >= 49) {
@@ -107,7 +132,7 @@ function next(){
       if (chosenuser.length >= 1) {
         Game.User.name=chosenuser;
         localStorage.setItem("name", chosenuser);
-        changedialogue(`kat: "well hey ${Game.User.name}, heard you're doin some kinda self employment thing? that's pretty neat"`);
+        current_step == 3;
       };
     default:
       break;
@@ -136,39 +161,62 @@ function abbreviateNumber(value) {
 
 function goto(here, notthere){
   //in the situation you need to add multiple "notthere"s, maybe find a way to add all the places ur not at in the variables area
+  //what im trynna say is this is a bandaid fix for now
   var whereugoin
   var whereufrom
   whereugoin=here;
   whereufrom=notthere;
-  document.getElementById(whereugoin).classList.add('urhere');
-  document.getElementById(whereugoin).classList.remove('urnothere');
-  document.getElementById(whereufrom).classList.remove('urhere');
-  document.getElementById(whereufrom).classList.add('urnothere');
+  cbid(whereugoin).classList.add('urhere');
+  cbid(whereugoin).classList.remove('urnothere');
+  cbid(whereufrom).classList.remove('urhere');
+  cbid(whereufrom).classList.add('urnothere');
+
+  if (here=='room'){
+    setTimeout(function(){
+      cbid('LUhome').style.width = '100%';
+      cbid('LUjak').style.width = '2px';
+    }, 1);
+  }else{
+    setTimeout(function(){
+      cbid('LUhome').style.width = '2px';
+      cbid('LUjak').style.width = '100%';
+    }, 1);
+  };
 };
 
 console.log(localStorage);
 
 // THE SAVE BOX!!!!!!!!!!!!!!!!!!!!!!
 setInterval(function(){
+  localStorage.setItem("done with intro", Game.User.doneintro);
   localStorage.setItem("clix", Math.floor(Game.Info.clix));
+  localStorage.setItem("handmadeclix", Math.floor(Game.Info.handmadeclix));
+  localStorage.setItem("lifetimeclix", Math.floor(Game.Info.lifetimeclix));
+  localStorage.setItem("micecount", Game.Buyables.mice.count);
+  localStorage.setItem("miceprice", Game.Buyables.mice.price);
+  localStorage.setItem("monitorcount", Game.Buyables.minimonitor.count);
+  localStorage.setItem("monitorprice", Game.Buyables.minimonitor.price);
   console.log(`saved progress`);
   console.log(localStorage);
 }, 10000)
 // THE SAVE BOX!!!!!!!!!!!!!!!!!!!!!!
 function changecolorbyid(thing, color){
-  document.getElementById(thing).style.color = color;
+  cbid(thing).style.color = color;
 };
 
 function updateClixthings() {
-  document.getElementById("clixcount").innerHTML=abbreviateNumber(Math.floor(Game.Info.clix));
-  document.getElementById("fpstrack").innerHTML=fps;
-  document.getElementById("miceD").innerHTML=Game.Buyables.mice.count;
-  document.getElementById("mpriceD").innerHTML=Game.Buyables.mice.price;
-  document.getElementById("minimonD").innerHTML=Game.Buyables.minimonitor.count;
-  document.getElementById("minimonpD").innerHTML=Game.Buyables.minimonitor.price;
-  document.getElementById("cpsShower").innerHTML=Game.Info.trueCps;
+  //making things show up on the html
+  cbid("clixcount").innerHTML=abbreviateNumber(Math.floor(Game.Info.clix));
+  cbid("fpstrack").innerHTML=fps;
+  cbid("miceD").innerHTML=Game.Buyables.mice.count;
+  cbid("mpriceD").innerHTML=Game.Buyables.mice.price;
+  cbid("minimonD").innerHTML=Game.Buyables.minimonitor.count;
+  cbid("minimonpD").innerHTML=Game.Buyables.minimonitor.price;
+  cbid("cpsShower").innerHTML=abbreviateNumber(Game.Info.trueCps.toFixed(1));
+  cbid("clixmadebyhandwowcrazy").innerHTML=Game.Info.handmadeclix;
+  cbid("allurclixevermade").innerHTML=abbreviateNumber(Math.floor(Game.Info.lifetimeclix));
+  
 
-  // console.log(`you're on case ${current_line} and have ${unaccepted_clicks} invalid 'next's`);
   var cpsget
   cpsget = 
   ((Game.Buyables.mice.basepower*Game.Buyables.mice.count)*Game.Buyables.mice.multiplier)+
@@ -188,12 +236,23 @@ function updateClixthings() {
   } else if (Game.Info.clix<Game.Buyables.minimonitor.price){
     changecolorbyid("affordmon", '#545454');
   };
+
+  var L = Game.Info.lifetimeclix;
+  if (L<15){
+    cbid("flavor").innerHTML="you're a bit behind on rent, but maybe this clix stuff'll take off. (click on the rabbit at the desk to the right to get started)";
+  } else if (L>15&&L<300){
+    cbid("flavor").innerHTML="made a bit on the side so far! still not much but you can afford like, a mouse or something now.";
+  } else if (L>300){
+    cbid("flavor").innerHTML="this is really getting somewhere, could be a full time thing.";
+  };
 };
 
 // clix production 😈 -------------------------------------------- //
 
 function click(){
   Game.Info.clix+=Game.Info.clickpower;
+  Game.Info.lifetimeclix+=Game.Info.clickpower;
+  Game.Info.handmadeclix+=Game.Info.clickpower;
   updateClixthings();
 };
 
@@ -237,5 +296,6 @@ function getTrueCps(a, b) {
 
 setInterval(function(){
   Game.Info.clix+=Game.Info.trueCps/fps;
+  Game.Info.lifetimeclix+=Game.Info.trueCps/fps;
   updateClixthings();
 }, 1000/fps);
