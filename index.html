@@ -33,7 +33,7 @@
 
   <div id="bread">
     <div id="lettuce">
-      version 0.95 || start finishing up
+      version 0.96 || start finishing up
       <h4>fps logger: <span id="fpstrack">0</span></h4>
     </div>
 
@@ -92,14 +92,54 @@
         </div>
         <div id="jak" class="LOCjak urnothere">
           <h1> jak.</h1>
-          <p3>met this guy back in high school. weird fella, but he knows how to mod your stuff pretty well.</p3>
+          <p3>met this guy years back. weird fella, but he does know his way around finding stuff for you.</p3>
           <div id="LUjak"></div>
-          <p4><br>
-            idk, stuff like,<br>
-            'extra mouse buttons'<br>
-            'ultra 1440p(quad HD) curved mini monitors'<br>
-            idk man this is hard to come up with
-          </p4>
+
+          <div id="upgradeupgrades">
+
+            <p1 style="position: absolute; z-index: 0; width: 50%; text-align: center; margin-top: 10px;">empty? buy some stuff, he might come up with somethin.</p1>
+
+            <div id="mouup1" class="upgradeupgradebox urnothere" onclick="window.buygrade('mouseupgrade1')">
+              <img src="img/extramousebuttons.png" class="notdraggable" draggable="false">
+              <div>
+                <h2>mice with too many buttons</h2>
+                <h3>*doubles clix made with mice</h3>
+                <h4>jak used to sell these back in high school, loves makin them.</h4>
+              </div>
+              <p1><span id="miceup1p">0</span> clix</p1>
+            </div>
+
+            <div id="mouup2" class="upgradeupgradebox urnothere" onclick="window.buygrade('mouseupgrade2')">
+              <img src="img/weirdmouse.png" class="notdraggable purpleglow" draggable="false">
+              <div>
+                <h2>eerie mice</h2>
+                <h3>*triples clix made with mice</h3>
+                <h4>"im gonna be honest i don't know where these came from, but they're kinda neat" - jak</h4>
+              </div>
+              <p1><span id="miceup2p">0</span> clix</p1>
+            </div>
+
+            <div id="monup1" class="upgradeupgradebox urnothere" onclick="window.buygrade('monupgrade1')">
+              <img src="img/HDminimonitor.png" class="notdraggable" draggable="false">
+              <div>
+                <h2>ultra 1440p full hd mini monitors (5hz)</h2>
+                <h3>*doubles clix made with minimonitors</h3>
+                <h4>you can totally notice the difference man trust me</h4>
+              </div>
+              <p1><span id="monup1p">0</span> clix</p1>
+            </div>
+
+            <div id="monup2" class="upgradeupgradebox urnothere" onclick="window.buygrade('monupgrade2')">
+              <img src="img/smartminimonitor.png" class="notdraggable greenglow" draggable="false">
+              <div>
+                <h2>movie hacker mini monitors</h2>
+                <h3>*triples clix made with minimonitors</h3>
+                <h4>works well, a bit too well..</h4>
+              </div>
+              <p1><span id="monup2p">0</span> clix</p1>
+            </div>
+
+          </div>
         </div>
       </div>
 
@@ -111,7 +151,7 @@
         </div>
 
         <img id="imagetoclickon" src="img/firsteversprite.png" onclick="window.click()" class="notdraggable" draggable="false">
-        <h1 style="text-align: center;">you have <span id="clixcount">0</span> clix!!! :3c</h1>
+        <h1 style="text-align: center;">you have <span id="clixcount">0</span> clix!!! :)</h1>
 
       </div>
     </div>

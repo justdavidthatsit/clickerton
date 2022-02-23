@@ -10,7 +10,7 @@ const Game = {
   "Info": {
     "clix": 0,
     "cps": 0,
-    "clickpower": 1,
+    "clickpower": 1000,
     "trueCps": 0, //THIS SHOULD ALWAYS START AS 0
     "handmadeclix": 0,
     "lifetimeclix": 0
@@ -21,14 +21,22 @@ const Game = {
       "price": 15,
       "count": 0,
       "basepower": .1,
-      "multiplier": 1
+      "multiplier": 1,
+      "upgr1": 1,
+      "upgr2": 1,
+      "upgr1price": 100,
+      "upgr2price": 500
     },
     "minimonitor": {
       "baseprice": 150,
       "price": 100,
       "count": 0,
       "basepower": 1,
-      "multiplier": 1
+      "multiplier": 1,
+      "upgr1": 1,
+      "upgr2": 1,
+      "upgr1price": 1000,
+      "upgr2price": 5000
     }
   }
 };
@@ -37,6 +45,12 @@ console.log(Game);
 
 // our loading of a presave --------------------------------------- //
 if (localStorage.getItem('lifetimeclix')>=1){
+  
+  function savefix(n){
+    var fix = localStorage.getItem(n);
+    return parseInt(fix, 10);
+  }//name
+  
   Game.User.doneintro = localStorage.getItem('done with intro');
 
   var fixedupclix = localStorage.getItem('clix');
@@ -53,14 +67,28 @@ if (localStorage.getItem('lifetimeclix')>=1){
   Game.User.name = localStorage.getItem('name');
   Game.Buyables.mice.count += parseInt(fxdmicecount, 10);
   Game.Buyables.mice.price = parseInt(fxdmiceprice, 10);
+  Game.Buyables.mice.upgr1 = savefix('mouupgr1');
+  Game.Buyables.mice.upgr2 = savefix('mouupgr2');
   Game.Buyables.minimonitor.count += parseInt(fxmoncount, 10);
   Game.Buyables.minimonitor.price = parseInt(fxmonprice, 10);
+  Game.Buyables.minimonitor.upgr1 = savefix('monupgr1');
+  Game.Buyables.minimonitor.upgr2 = savefix('monupgr2');
 };
 // shortcuts ------------------------------------------------------ //
 // CBID = Change By ID
 const cbid = function(wheretheidsgonnabe){
   return document.getElementById(wheretheidsgonnabe);
 };
+// more preloading ------------------------------------------------ //
+function upgradeboughtcheck(u,l){
+  if (u>1){
+    cbid(l).classList.add('urnothere');
+  };
+};
+upgradeboughtcheck(Game.Buyables.mice.upgr1,"mouup1");
+upgradeboughtcheck(Game.Buyables.mice.upgr2,"mouup2");
+upgradeboughtcheck(Game.Buyables.minimonitor.upgr1, "monup1");
+upgradeboughtcheck(Game.Buyables.minimonitor.upgr2, "monup2");
 // dialogue ------------------------------------------------------- //
 var welcomedialogue = [
   { d: "kat: \"hey! i'm kat. all settled in?\"",
@@ -194,8 +222,12 @@ setInterval(function(){
   localStorage.setItem("lifetimeclix", Math.floor(Game.Info.lifetimeclix));
   localStorage.setItem("micecount", Game.Buyables.mice.count);
   localStorage.setItem("miceprice", Game.Buyables.mice.price);
+  localStorage.setItem("mouupgr1", Game.Buyables.mice.upgr1);
+  localStorage.setItem("mouupgr2", Game.Buyables.mice.upgr2);
   localStorage.setItem("monitorcount", Game.Buyables.minimonitor.count);
   localStorage.setItem("monitorprice", Game.Buyables.minimonitor.price);
+  localStorage.setItem("monupgr1", Game.Buyables.minimonitor.upgr1);
+  localStorage.setItem("monupgr2", Game.Buyables.minimonitor.upgr2);
   console.log(`saved progress`);
   console.log(localStorage);
 }, 10000)
@@ -206,23 +238,31 @@ function changecolorbyid(thing, color){
 
 function updateClixthings() {
   //making things show up on the html
+  var mou = Game.Buyables.mice;
+  var mon = Game.Buyables.minimonitor;
   cbid("clixcount").innerHTML=abbreviateNumber(Math.floor(Game.Info.clix));
   cbid("fpstrack").innerHTML=fps;
-  cbid("miceD").innerHTML=Game.Buyables.mice.count;
-  cbid("mpriceD").innerHTML=Game.Buyables.mice.price;
-  cbid("minimonD").innerHTML=Game.Buyables.minimonitor.count;
-  cbid("minimonpD").innerHTML=Game.Buyables.minimonitor.price;
+  cbid("miceD").innerHTML=mou.count;
+  cbid("mpriceD").innerHTML=mou.price;
+  cbid("miceup1p").innerHTML=mou.upgr1price;
+  cbid("miceup2p").innerHTML=mou.upgr2price;
+  cbid("minimonD").innerHTML=mon.count;
+  cbid("minimonpD").innerHTML=mon.price;
+  cbid("monup1p").innerHTML=mon.upgr1price;
+  cbid("monup2p").innerHTML=mon.upgr2price;
   cbid("cpsShower").innerHTML=abbreviateNumber(Game.Info.trueCps.toFixed(1));
   cbid("clixmadebyhandwowcrazy").innerHTML=Game.Info.handmadeclix;
   cbid("allurclixevermade").innerHTML=abbreviateNumber(Math.floor(Game.Info.lifetimeclix));
   
-
-  var cpsget
+  function calc(c){
+    return ((c.basepower*c.count)*((c.multiplier*c.upgr1)*c.upgr2));
+  }
+  var cpsget;
   cpsget = 
-  ((Game.Buyables.mice.basepower*Game.Buyables.mice.count)*Game.Buyables.mice.multiplier)+
-  ((Game.Buyables.minimonitor.basepower*Game.Buyables.minimonitor.count)*Game.Buyables.minimonitor.multiplier)
+  calc(Game.Buyables.mice)+
+  calc(Game.Buyables.minimonitor);
 
-  Game.Info.trueCps = getTrueCps(Game.Info.cps, cpsget)
+  Game.Info.trueCps = getTrueCps(Game.Info.cps, cpsget);
 
 
   //stylistic things
@@ -236,6 +276,17 @@ function updateClixthings() {
   } else if (Game.Info.clix<Game.Buyables.minimonitor.price){
     changecolorbyid("affordmon", '#545454');
   };
+
+  function upappear(c,u,i,t){
+    if (c>=t&&u==1){
+      cbid(i).classList.add('urhere');
+      cbid(i).classList.remove('urnothere');
+    };
+  };//count, upgrade, id, threshold
+  upappear(Game.Buyables.mice.count, Game.Buyables.mice.upgr1, "mouup1", 1);
+  upappear(Game.Buyables.mice.count, Game.Buyables.mice.upgr2, "mouup2", 5);
+  upappear(Game.Buyables.minimonitor.count, Game.Buyables.minimonitor.upgr1, "monup1", 1);
+  upappear(Game.Buyables.minimonitor.count, Game.Buyables.minimonitor.upgr2, "monup2", 5);
 
   var L = Game.Info.lifetimeclix;
   if (L<15){
@@ -277,6 +328,41 @@ function buy(thing){
     currentfella.count+=1;
     currentfella.price=Math.round(currentfella.baseprice*(1.15**currentfella.count));
     console.log(currentfella.price);
+  };
+};
+function buygrade(thing){
+  function deletethisup(x){
+    cbid(x).classList.add('urnothere');
+  }
+  switch (thing) {
+    case 'mouseupgrade1': //MICE UPGRADE START ------------------------------- //
+      if (Game.Info.clix>=Game.Buyables.mice.upgr1price){
+        Game.Buyables.mice.upgr1+=1;
+        Game.Info.clix-=Game.Buyables.mice.upgr1price;
+        deletethisup("mouup1");
+      };
+      break
+    case 'mouseupgrade2':
+      if (Game.Info.clix>=Game.Buyables.mice.upgr2price){
+        Game.Buyables.mice.upgr2+=1;
+        Game.Info.clix-=Game.Buyables.mice.upgr2price;
+        deletethisup("mouup2");
+      };
+      break
+    case 'monupgrade1': //MONITOR UPGRADE START ------------------------------ //
+      if (Game.Info.clix>=Game.Buyables.minimonitor.upgr1price){
+        Game.Buyables.minimonitor.upgr1+=1;
+        Game.Info.clix-=Game.Buyables.minimonitor.upgr1price;
+        deletethisup("monup1");
+      };
+      break
+    case 'monupgrade2':
+      if (Game.Info.clix>=Game.Buyables.minimonitor.upgr2price){
+        Game.Buyables.minimonitor.upgr2+=1;
+        Game.Info.clix-=Game.Buyables.minimonitor.upgr2price;
+        deletethisup("monup2");
+      };
+      break
   };
 };
 
