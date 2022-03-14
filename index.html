@@ -1,165 +1,61 @@
 <!doctype html>
-
-<html lang="en"> 
+<html lang="en">
 
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>clickerton! :D</title>
-  <meta name="description" content="lotsa clicking happening here">
-  <meta name="author" content="hoofy">
+  <title>david kvasyuk | justdavidthatsall@gmail.com</title>
+  <meta name="description" content="portfolio for david kvasyuk">
+  <meta name="author" content="david kvasyuk">
 
-  <meta property="og:title" content="A Basic HTML5 Template">
+  <meta property="og:title" content="a portfolio">
   <meta property="og:type" content="website">
   <!-- <meta property="og:url" content="PUTAURLHEREWHENYOUGETONE"> -->
-  <meta property="og:description" content="a game about making a number go up">
+  <meta property="og:description" content="a little place for my stuff to go">
   <!-- <meta property="og:image" content="PUTANIMAGEHEREWHENYOUGETONE"> -->
 
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/img/fella.png">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="mainstyle.css">
+  <script type="text/javascript" src="ennard.js"></script>
 </head>
 
 <body>
-
-  <div id="bread">
-    <div id="lettuce">
-      version 0.96 || start finishing up
-      <h4>fps logger: <span id="fpstrack">0</span></h4>
-    </div>
-
-    <div id="modal_container" class="modal_container show">
-      <div class="modal">
-        <img id="background" draggable="false" src="img/welcome.png">
-        <div id="modal_content">
-          <img id="fella" draggable="false" src="img/chargirlboss.png">
-          <div id="welcomebox" class="textbox"><span id="dialogue">kat: "hey! i'm kat. all settled in?"</span></div>
-          <input id="chosenuser" class="" type="text" placeholder="your name here :D" maxlength="25">
-          <button onclick="window.next()"><span id="dialogueR">"yea"</span></button>
-        </div>
-      </div>
-    </div>
-
-    <div id="themeatalsoknownasthegame">
-
-      <div id="upgrades">
-
-        <h1>shop</h1>
-
-        <div class="upgradebox" onclick="window.buy('mice')">
-          <h2><span id="miceD">0</span></h2>
-          <img src="img/mouse.png" class="notdraggable" draggable="false">
-          <div>
-            <h1>mouse</h1>
-            <h4 id="affordmouse"><span id="mpriceD">15</span> clix</h4>
+  <div id="container">
+    <div id="pocket">
+      <div id="main" class="nodrag">
+        <p1>hi, my name is</p1>
+        <div id="fancyletters">
+          <h1>david</h1>
+          <div style="width: 20px;"></div>
+          <div style="display: flex; align-items: center; flex-direction: column;">
+            <h1 id="specialtext">kvasyuk</h1>
+            <div id="hintlastname">
+              <i>( kvah-sook )</i>
+            </div>
           </div>
+          <h1>.</h1>
         </div>
-        <div class="upgradebox" onclick="window.buy('minimonitor')">
-          <h2><span id="minimonD">0</span></h2>
-          <img src="img/minimonitor.png" class="notdraggable" draggable="false">
-          <div>
-            <h1>mini monitor</h1>
-            <h4 id="affordmon"><span id="minimonpD">150</span> clix</h4>
-          </div>
-        </div>
-
-      </div>
-
-      <div id="gameloop">
-        <div id="navigationbar">
-          <img src="img/apartments.png" class="notdraggable menuoption" draggable="false" onclick="window.goto('room', 'jak')">
-          <img src="img/fella.png" class="notdraggable menuoption" draggable="false" onclick="window.goto('jak', 'room')">
-        </div>
-        <div id="room" class="LOCroom urhere">
-          <h1>home.</h1>
-          <p3><span id="flavor">text</span></p3>
-          <div id="LUhome"></div>
-          <p2 style="font-size: 20px; margin-top: 10px; color: #464646;">some info about your run so far:</p2>
-          <p4 style="margin-top: -20px;"><br>
-            handmade clix: <span id="clixmadebyhandwowcrazy">0</span><br>
-            total clix made: <span id="allurclixevermade">0</span><br>
-            time since you first started:
-          </p4>
-        </div>
-        <div id="jak" class="LOCjak urnothere">
-          <h1> jak.</h1>
-          <p3>met this guy years back. weird fella, but he does know his way around finding stuff for you.</p3>
-          <div id="LUjak"></div>
-
-          <div id="upgradeupgrades">
-
-            <p1 style="position: absolute; z-index: 0; width: 50%; text-align: center; margin-top: 10px;">empty? buy some stuff, he might come up with somethin.</p1>
-
-            <div id="mouup1" class="upgradeupgradebox urnothere" onclick="window.buygrade('mouseupgrade1')">
-              <img src="img/extramousebuttons.png" class="notdraggable" draggable="false">
-              <div>
-                <h2>mice with too many buttons</h2>
-                <h3>*doubles clix made with mice</h3>
-                <h4>jak used to sell these back in high school, loves makin them.</h4>
-              </div>
-              <p1><span id="miceup1p">0</span> clix</p1>
-            </div>
-
-            <div id="mouup2" class="upgradeupgradebox urnothere" onclick="window.buygrade('mouseupgrade2')">
-              <img src="img/weirdmouse.png" class="notdraggable purpleglow" draggable="false">
-              <div>
-                <h2>eerie mice</h2>
-                <h3>*triples clix made with mice</h3>
-                <h4>"im gonna be honest i don't know where these came from, but they're kinda neat" - jak</h4>
-              </div>
-              <p1><span id="miceup2p">0</span> clix</p1>
-            </div>
-
-            <div id="monup1" class="upgradeupgradebox urnothere" onclick="window.buygrade('monupgrade1')">
-              <img src="img/HDminimonitor.png" class="notdraggable" draggable="false">
-              <div>
-                <h2>ultra 1440p full hd mini monitors (5hz)</h2>
-                <h3>*doubles clix made with minimonitors</h3>
-                <h4>you can totally notice the difference man trust me</h4>
-              </div>
-              <p1><span id="monup1p">0</span> clix</p1>
-            </div>
-
-            <div id="monup2" class="upgradeupgradebox urnothere" onclick="window.buygrade('monupgrade2')">
-              <img src="img/smartminimonitor.png" class="notdraggable greenglow" draggable="false">
-              <div>
-                <h2>movie hacker mini monitors</h2>
-                <h3>*triples clix made with minimonitors</h3>
-                <h4>works well, a bit too well..</h4>
-              </div>
-              <p1><span id="monup2p">0</span> clix</p1>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div id="clicker">
-
-        <div style="display: flex;flex-direction: column;align-items: center;">
-          <h1 style="text-align: center; padding: 1px;"><span id="user"></span>'s <span>room</span></h1>
-          <p1>cps: <span id="cpsShower">0</span></p1>
-        </div>
-
-        <img id="imagetoclickon" src="img/firsteversprite.png" onclick="window.click()" class="notdraggable" draggable="false">
-        <h1 style="text-align: center;">you have <span id="clixcount">0</span> clix!!! :)</h1>
-
       </div>
     </div>
-
+    <div id="navbar">
+      <div class="nav">
+        <p1>option</p1>
+      </div>
+      <div class="nav">
+        <p1>option</p1>
+      </div>
+      <div class="nav">
+        <p1>option</p1>
+      </div>
+      <div class="nav">
+        <p1>option</p1>
+      </div>
+    </div>
   </div>
-
 </body>
-<footer>
-  <script type="text/javascript" src="internalorgans.js"></script>
-</footer>
+
 </html>
