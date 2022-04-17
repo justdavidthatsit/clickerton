@@ -74,7 +74,18 @@ body {
 #navbar {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+}
+#elinked {
+  color: #C4C4C4;
+  width: min-content;
+  transition: 1s;
+}
+#elinked:hover {
+cursor: pointer;
+transition: 1s;
+color: #aeffb3;
+text-shadow: rgba(154, 255, 162, 0.548) 0px 0px 21px;
 }
 a {
   color: inherit;
@@ -89,8 +100,16 @@ a {
   padding: 10px;
   overflow: hidden;
   transition: color 0s 0.25s var(--timing-function);
+  height: 50px;
+  width: 100px;
+  font-size: 20px;
 }
-
+.nav a p1 {
+  transform: translateY(14px);
+  display: flex;
+  font-size: 10;
+  justify-content: center;
+}
 .nav a::before,
 .nav a::after {
   position: absolute;

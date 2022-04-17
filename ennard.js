@@ -21,3 +21,8 @@ window.onload = () => {
     });
   }
 }
+
+function elinker(){
+  window.location.href="mailto:justdavidthatsall@gmail.com";
+  window.location.href="index.html";
+}
