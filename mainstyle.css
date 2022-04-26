@@ -154,6 +154,93 @@ a {
   opacity: 1;
 }
 
+.portreveal {
+  height: 150px;
+  width: 225px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  display: block;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .2s;
+  z-index: 1;
+}
+.portreveal::before {
+  content: "";
+  position: absolute;
+  border-radius: 10px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 225px;
+  background: var(--background);
+  transition: .3s;
+  transform: translateZ(-1px);
+  overflow: hidden;
+  content: attr(data-text);
+  z-index: 2;
+  
+  color: #d3d3d3;
+  display: flex;
+  align-items: center;
+}
+/*235px*/
+.portreveal:hover::before{
+  transform: translateX(235px);
+  overflow: -moz-hidden-unscrollable;
+  width: 30vw;
+}
+.portreveal:hover{
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.portreveal2 {
+  height: 150px;
+  width: 225px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  display: block;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .2s;
+  z-index: 1;
+}
+.portreveal2::before {
+  content: "";
+  position: absolute;
+  border-radius: 10px;
+  top: 0;
+  bottom: 0;
+  left: 225;
+  right: 0;
+  width: 225px;
+  background: var(--background);
+  transition: .3s;
+  transform: translateZ(-1px);
+  overflow: hidden;
+  content: attr(data-text);
+  z-index: 2;
+  
+  color: #d3d3d3;
+  display: flex;
+  align-items: center;
+}
+/*235px*/
+.portreveal2:hover::before{
+  transform: translateX(-235px);
+  overflow: -moz-hidden-unscrollable;
+  z-index: 3;
+  width: 30vw;
+}
+.portreveal2:hover{
+  transform: scale(1.05);
+  z-index: 2;
+}
+
 
 /* ANIMATIONS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

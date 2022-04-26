@@ -26,3 +26,14 @@ function elinker(){
   window.location.href="mailto:justdavidthatsall@gmail.com";
   window.location.href="index.html";
 }
+
+function portfixer(s){
+  const sp = document.querySelector(s);
+  sp.style.zIndex = "3";
+};
+function portunfixer(s){
+  const sp = document.querySelector(s);
+  setTimeout(() => {
+    sp.style.zIndex = "1";
+  }, 100)
+};

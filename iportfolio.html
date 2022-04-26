@@ -30,25 +30,48 @@
 
   <div id="container">
     <div id="pocket">
-      <div id="main" class="nodrag">
-        <p1>hi, my name is</p1>
-        <div id="fancyletters">
-          <h1>this is the portfolio</h1>
-          <div style="width: 20px;"></div>
-          <div style="display: flex; align-items: center; flex-direction: column;">
-            <h1 id="specialtext">page</h1>
-            <div id="hintlastname">
-              <i>( ka-vah-sook )</i>
-            </div>
+      <div id="main" style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 70vw;
+      max-width: 70vw;
+      text-align: center;
+      " class="nodrag">
+        <div>
+          <h1 style="line-height: 20px;">My Portfolio</h1>
+        </div>
+        <div>
+          <p1 style="color: #C4C4C4; min-width: 70vw;">Click on any of the projects to be redirected to it!</p1>
+        </div>
+        <div id="portfoliocontainer" style="
+        display: flex;
+        width: 70%;
+        justify-content: space-evenly;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        ">
+          <!-- ALWAYS use images that are 300x200
+            and use portreveal2 for images on the right
+          -->
+          <div class="portreveal"
+          style="background-image: url(/img/PORTfclickerton.png);"
+          onmouseover="window.portfixer('.portreveal')"
+          onmouseout="window.portunfixer('.portreveal')"
+          data-text="Clickerton is a browser based incremental game exercise I developed alone to sharpen my Javascript, HTML, and CSS knowledge. This is mainly what I have been working on for 2022, learning many things along the way such as storing information, processing and creating equations for quick and efficient calculations, and problem solving skills that only experience can provide.">
           </div>
-          <h1>.</h1>
+          <div class="portreveal2"
+          style="background-image: url(/img/PORTfatthecenter.png);"
+          data-text="At The Center is an educational nonprofit organization focused on holistic education. I became involved with the site after I discovered it on Catchafire. In the following month, I provided the organization with flexible web development support. Listening to feedback and wishes, I assisted with designing and managing content on the site until they were satisfied with the results.">
+          </div>
         </div>
       </div>
     </div>
     <div id="navbar">
       <div class="nav">
-        <a href="index.html" data-icon="&#x263a;">
-          <p1>home</p1>
+        <a href="index.html" data-icon="&#x21A9;">
+          <p1>Home</p1>
         </a>
       </div>
     </div>
