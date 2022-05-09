@@ -8,10 +8,16 @@ window.onload = () => {
 
   for (let i=0; i<a.length; i++){
     const as=a[i];
-
+    
     as.addEventListener('click', e=>{
       e.preventDefault();
       let target = e.target.href;
+
+      if(as.classList.contains('newtabber')){
+        console.log("hope you got it!");
+        window.open(target);
+        return;
+      };
 
       t.classList.add('is-active');
 

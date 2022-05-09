@@ -10,7 +10,7 @@ const Game = {
   "Info": {
     "clix": 0,
     "cps": 0,
-    "clickpower": 1000,
+    "clickpower": 1,
     "trueCps": 0, //THIS SHOULD ALWAYS START AS 0
     "handmadeclix": 0,
     "lifetimeclix": 0
@@ -91,17 +91,17 @@ upgradeboughtcheck(Game.Buyables.minimonitor.upgr1, "monup1");
 upgradeboughtcheck(Game.Buyables.minimonitor.upgr2, "monup2");
 // dialogue ------------------------------------------------------- //
 var welcomedialogue = [
-  { d: "kat: \"hey! i'm kat. all settled in?\"",
-    r: "yea"
+  { d: "kat: \"Hey! I'm Kat. All settled in?\"",
+    r: "Yup"
   },
-  { d: "kat: \"that's good, purrhaps you'll be a better roommate than my last one! what's your name?\"",
+  { d: "Kat: \"That's good, what's your name?\"",
     r: "[enter name]"
   },
-  { d: `kat: "well hey, heard you're doin some kinda new 'clix' thing? heard a bit about that online."`,
-    r: `"same here, wanted to try it out"`
+  { d: `Kat: "Well hey, just letting you know at the top of the screen there are two buttons, one for going back home and the other (the rabbit) for buying upgrades. You can get started by clicking on the rabbit at the computer and make some Clix!"`,
+    r: `"...What??"`
   },
-  { d: "kat: \"that's neat, anyway i'll cya for now but good luck with all that!\"",
-    r: `"cya"`
+  { d: `Kat: "Don't worry about it, cya for now!"`,
+    r: `"Cya I guess?"`
   }
 ];
 
@@ -112,8 +112,8 @@ function changedialogue(thingtosay){
 };
 
 if (Game.User.doneintro == 1) {
-  changedialogue(`kat: "welcome back ${Game.User.name}! i'd say how much you earned here but i havent been programmed to say that yet :DD"`);
-  cbid("dialogueR").innerHTML = "lol hey";
+  changedialogue(`Kat: "Welcome back ${Game.User.name}! I'd say how much you earned here but I havent been programmed to say that yet, and offline cps isn't a thing at the moment. Sorry :("`);
+  cbid("dialogueR").innerHTML = "That's okay I guess :(";
   cbid("user").innerHTML = Game.User.name;
   current_line = 'welcome';
 };
@@ -212,6 +212,11 @@ function goto(here, notthere){
   };
 };
 
+function wipesave(){
+  localStorage.clear();
+  location.reload();
+};
+
 console.log(localStorage);
 
 // THE SAVE BOX!!!!!!!!!!!!!!!!!!!!!!
@@ -241,7 +246,7 @@ function updateClixthings() {
   var mou = Game.Buyables.mice;
   var mon = Game.Buyables.minimonitor;
   cbid("clixcount").innerHTML=abbreviateNumber(Math.floor(Game.Info.clix));
-  cbid("fpstrack").innerHTML=fps;
+  //cbid("fpstrack").innerHTML=fps; [DEPRICATED FOR NOW, NO NEED]
   cbid("miceD").innerHTML=mou.count;
   cbid("mpriceD").innerHTML=mou.price;
   cbid("miceup1p").innerHTML=mou.upgr1price;

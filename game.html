@@ -33,8 +33,9 @@
 
   <div id="bread">
     <div id="lettuce">
-      version 0.96 || start finishing up
-      <h4>fps logger: <span id="fpstrack">0</span></h4>
+      version 0.6
+      <a href="iportfolio.html" id="portportal">Dev's Portfolio</a>
+      <button onclick="window.wipesave()">wipe save</button>
     </div>
 
     <div id="modal_container" class="modal_container show">
@@ -42,9 +43,9 @@
         <img id="background" draggable="false" src="img/welcome.png">
         <div id="modal_content">
           <img id="fella" draggable="false" src="img/chargirlboss.png">
-          <div id="welcomebox" class="textbox"><span id="dialogue">kat: "hey! i'm kat. all settled in?"</span></div>
-          <input id="chosenuser" class="" type="text" placeholder="your name here :D" maxlength="25">
-          <button onclick="window.next()"><span id="dialogueR">"yea"</span></button>
+          <div id="welcomebox" class="textbox"><span id="dialogue">"Hey! I'm Kat. All settled in?"</span></div>
+          <input id="chosenuser" class="" type="text" placeholder="[enter name here]" maxlength="25">
+          <button onclick="window.next()"><span id="dialogueR">"Yup"</span></button>
         </div>
       </div>
     </div>
@@ -53,13 +54,13 @@
 
       <div id="upgrades">
 
-        <h1>shop</h1>
+        <h1>Shop</h1>
 
         <div class="upgradebox" onclick="window.buy('mice')">
           <h2><span id="miceD">0</span></h2>
           <img src="img/mouse.png" class="notdraggable" draggable="false">
           <div>
-            <h1>mouse</h1>
+            <h1>Mouse</h1>
             <h4 id="affordmouse"><span id="mpriceD">15</span> clix</h4>
           </div>
         </div>
@@ -67,7 +68,7 @@
           <h2><span id="minimonD">0</span></h2>
           <img src="img/minimonitor.png" class="notdraggable" draggable="false">
           <div>
-            <h1>mini monitor</h1>
+            <h1>Mini Monitor</h1>
             <h4 id="affordmon"><span id="minimonpD">150</span> clix</h4>
           </div>
         </div>
@@ -80,31 +81,36 @@
           <img src="img/fella.png" class="notdraggable menuoption" draggable="false" onclick="window.goto('jak', 'room')">
         </div>
         <div id="room" class="LOCroom urhere">
-          <h1>home.</h1>
+          <h1>Home</h1>
           <p3><span id="flavor">text</span></p3>
           <div id="LUhome"></div>
-          <p2 style="font-size: 20px; margin-top: 10px; color: #464646;">some info about your run so far:</p2>
+          <p2 style="font-size: 20px; margin-top: 10px; color: #464646;">Some info about your run so far:</p2>
           <p4 style="margin-top: -20px;"><br>
-            handmade clix: <span id="clixmadebyhandwowcrazy">0</span><br>
-            total clix made: <span id="allurclixevermade">0</span><br>
-            time since you first started:
+            Handmade Clix: <span id="clixmadebyhandwowcrazy">0</span><br>
+            Total Clix made: <span id="allurclixevermade">0</span><br>
+            <s>Time since you first started:</s> (haven't added this yet)<br><br><br>
+          </p4>
+          <p2 style="font-size: 20px; margin-top: 10px; color: #303030;">Dev's log:</p2>
+          <p4 style="margin-top: -20px;"><br>
+            Hey! As you can see, this game isn't done (especially in terms of decor) but I'm still pretty satisfied with how everything's up and running as of now. I defnitely learned a lot from this love letter to clicker games. 
+            I will probably be updating it every now and then but I think now's a good time to actually put my stuff out there, if I keep waiting until things are perfect I'll never get it out. WIP!
           </p4>
         </div>
         <div id="jak" class="LOCjak urnothere">
-          <h1> jak.</h1>
+          <h1> Jak's Shop</h1>
           <p3>met this guy years back. weird fella, but he does know his way around finding stuff for you.</p3>
           <div id="LUjak"></div>
 
           <div id="upgradeupgrades">
 
-            <p1 style="position: absolute; z-index: 0; width: 50%; text-align: center; margin-top: 10px;">empty? buy some stuff, he might come up with somethin.</p1>
+            <p1 style="position: absolute; z-index: 0; width: 50%; text-align: center; margin-top: 10px;">Empty? Buy some stuff, he might come up with something.</p1>
 
             <div id="mouup1" class="upgradeupgradebox urnothere" onclick="window.buygrade('mouseupgrade1')">
               <img src="img/extramousebuttons.png" class="notdraggable" draggable="false">
               <div>
-                <h2>mice with too many buttons</h2>
+                <h2>Mice with too many buttons</h2>
                 <h3>*doubles clix made with mice</h3>
-                <h4>jak used to sell these back in high school, loves makin them.</h4>
+                <h4>Jak used to sell these back in high school, loves makin them.</h4>
               </div>
               <p1><span id="miceup1p">0</span> clix</p1>
             </div>
@@ -112,9 +118,9 @@
             <div id="mouup2" class="upgradeupgradebox urnothere" onclick="window.buygrade('mouseupgrade2')">
               <img src="img/weirdmouse.png" class="notdraggable purpleglow" draggable="false">
               <div>
-                <h2>eerie mice</h2>
+                <h2>Eerie mice</h2>
                 <h3>*triples clix made with mice</h3>
-                <h4>"im gonna be honest i don't know where these came from, but they're kinda neat" - jak</h4>
+                <h4>"I'm gonna be honest I don't know where these came from, but they're kinda neat" - Jak</h4>
               </div>
               <p1><span id="miceup2p">0</span> clix</p1>
             </div>
@@ -122,9 +128,9 @@
             <div id="monup1" class="upgradeupgradebox urnothere" onclick="window.buygrade('monupgrade1')">
               <img src="img/HDminimonitor.png" class="notdraggable" draggable="false">
               <div>
-                <h2>ultra 1440p full hd mini monitors (5hz)</h2>
-                <h3>*doubles clix made with minimonitors</h3>
-                <h4>you can totally notice the difference man trust me</h4>
+                <h2>Ultra 1440p full HD Mini Monitors (5hz)</h2>
+                <h3>*doubles clix made with mini monitors</h3>
+                <h4>You can totally notice the difference, trust me.</h4>
               </div>
               <p1><span id="monup1p">0</span> clix</p1>
             </div>
@@ -132,9 +138,9 @@
             <div id="monup2" class="upgradeupgradebox urnothere" onclick="window.buygrade('monupgrade2')">
               <img src="img/smartminimonitor.png" class="notdraggable greenglow" draggable="false">
               <div>
-                <h2>movie hacker mini monitors</h2>
-                <h3>*triples clix made with minimonitors</h3>
-                <h4>works well, a bit too well..</h4>
+                <h2>Movie hacker Mini Monitors</h2>
+                <h3>*triples clix made with mini monitors</h3>
+                <h4>Works well, a bit <i>too</i> well..</h4>
               </div>
               <p1><span id="monup2p">0</span> clix</p1>
             </div>
@@ -147,11 +153,11 @@
 
         <div style="display: flex;flex-direction: column;align-items: center;">
           <h1 style="text-align: center; padding: 1px;"><span id="user"></span>'s <span>room</span></h1>
-          <p1>cps: <span id="cpsShower">0</span></p1>
+          <p1>Clix per second: <span id="cpsShower">0</span></p1>
         </div>
 
         <img id="imagetoclickon" src="img/firsteversprite.png" onclick="window.click()" class="notdraggable" draggable="false">
-        <h1 style="text-align: center;">you have <span id="clixcount">0</span> clix!!! :)</h1>
+        <h1 style="text-align: center;">You have <span id="clixcount">0</span> clix!</h1>
 
       </div>
     </div>
